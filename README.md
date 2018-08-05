@@ -7,16 +7,31 @@ When a build of multiple tasks is being executed, often we want to abort if
 certain conditions do not match expectation.
 
 Abort As Failed
-===============
+^^^^^^^^^^^^^^^
 It is possible to define a verification step and let it fail. Then the whole
-build fails. However, it looks bad (somthing red) in the dashboard, and doesn't
-indicate clearly whether it was simply aborted or failed with an actual error.
+build fails.
 
-Abort As Cancelled
-==================
-Instead of marking an aborted build as failed, I rather mark them as cancelled.
-But the challenge is that you cannot cancel a build from a task by default.
-There is simply no such settings in the build definition.
+If you like this way, no need to read further.
+
+Abort As Succeeded
+^^^^^^^^^^^^^^^^^^
+While the agent is executing the build, you can abort its execution by the
+following PowerShell snippet,
+```
+Write-Host "##vso[task.setvariable variable=agent.jobstatus;]canceled"
+Write-Host "##vso[task.complete result=Canceled;]DONE"
+```
+This build would stop here, and shows as succeeded on dashboard.
+
+If you like this way, no need to read further.
+
+Abort As Cancelled?
+^^^^^^^^^^^^^^^^^^^
+Instead of marking an aborted build as failed/succeeded, I rather mark them as
+cancelled. But the challenge is that you cannot cancel a build from a task by
+default. There is simply no such settings in the build definition.
+
+But that's why I created this utility.
 
 How To Use The Utility
 ======================
