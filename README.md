@@ -1,5 +1,6 @@
 VSTS/TFS Abort Utility
 ----------------------
+> Story behind the utility can be found in [my blog post](https://blog.lextudio.com/how-to-abort-cancel-a-build-in-vsts-7a41fce5a42c).
 
 To Abort Builds
 ===============
@@ -52,6 +53,8 @@ powershell -executionpolicy bypass -File abort.ps1
 > The utility checks an environment variable `LEXTUDIO_VSTSABORT`.
 > It also expects PAT to be passed via environment variable `SYSTEM_PAT`.
 > All other environment variables are set by VSTS agent.
+
+> The personal access token has a life span (max one year), so it must be replaced with a valid one periodically.
 
 Support
 =======
